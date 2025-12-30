@@ -1,17 +1,39 @@
+interrogation_task:
+  description: >
+    Engage with the user regarding {topic}. Identify missing technical details, 
+    constraints, and the desired end-state.
+  expected_output: >
+    A list of 3-5 confirmed variables and a clear "Mission Objective" for the crew.
+  agent: interrogator
+
+strategy_task:
+  description: >
+    Review the interrogation results and create a 5-step execution plan for {topic}. 
+    Ensure the plan respects a sequential workflow to save VRAM.
+  expected_output: >
+    A structured workflow plan including specific data points for the researcher 
+    to find and a logic framework for the reasoner.
+  agent: strategist
+
 research_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Execute the search queries defined by the strategist. Focus on the most 
+    recent data given the current year is {current_year}.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
+    A bulleted "Facts Sheet" containing verified data, links, and technical specs.
   agent: researcher
 
-reporting_task:
+reasoning_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Solve the core problem for {topic} using the strategist's plan and 
+    the researcher's facts. Show your thinking steps.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A comprehensive, technically sound solution or answer to the user's request.
+  agent: reasoner
+
+revision_task:
+  description: >
+    Critique the reasoning output. Check for hallucination and prose quality.
+  expected_output: >
+    A final, polished, and verified Markdown report ready for the user.
+  agent: reviser

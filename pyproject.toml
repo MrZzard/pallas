@@ -5,7 +5,10 @@ description = "Pallas using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.14"
 dependencies = [
-    "crewai[tools]==1.7.2"
+    "crewai[tools]>=1.7.2",
+    "litellm[proxy]>=1.9.4",
+    "mcp>=1.16.0",
+    "ollama>=0.6.1",
 ]
 
 [project.scripts]
